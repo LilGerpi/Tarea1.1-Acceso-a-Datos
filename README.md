@@ -86,3 +86,7 @@ Algunas mejoras futuras podrían incluir:
 - Mejora de la interfaz de usuario para una experiencia más rica.
 - Implementación de una base de datos para manejar grandes cantidades de datos.
 - Funcionalidades adicionales como reservas de libros, recordatorios de devolución, entre otros.
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulte el archivo `LICENSE` para más información.
