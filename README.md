@@ -79,14 +79,10 @@ Clase que representa la información de un préstamo.
 5. Utilice el campo "Buscar" para encontrar libros rápidamente en la biblioteca.
 6. Explore las demás funcionalidades disponibles en la interfaz según sus necesidades.
 
-## Contribuciones y Mejoras Futuras
+## Mejoras Futuras
 
-Este proyecto es de código abierto y acepta contribuciones. Algunas mejoras futuras podrían incluir:
+Algunas mejoras futuras podrían incluir:
 
 - Mejora de la interfaz de usuario para una experiencia más rica.
 - Implementación de una base de datos para manejar grandes cantidades de datos.
 - Funcionalidades adicionales como reservas de libros, recordatorios de devolución, entre otros.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulte el archivo `LICENSE` para más información.
