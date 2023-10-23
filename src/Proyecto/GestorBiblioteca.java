@@ -1,18 +1,26 @@
 package Proyecto;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class GestorBiblioteca extends JFrame {
 
@@ -38,10 +46,11 @@ public class GestorBiblioteca extends JFrame {
 	// Constructor de la clase.
 	public GestorBiblioteca() {
 		// Configuración básica de la ventana.
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Operación de cierre por defecto.
-		setTitle("Gestor de Biblioteca"); // Título de la ventana.
-		setSize(600, 400); // Tamaño de la ventana.
-		setLayout(new GridLayout(0, 2, 10, 10)); // Definir el layout como GridLayout.
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Gestor de Biblioteca");
+		setSize(700, 450); // Aumentar un poco el tamaño para mejor visualización.
+		setLayout(new GridLayout(0, 2, 20, 20)); // Aumentar el espaciado entre componentes.
+		getContentPane().setBackground(Color.decode("#F5F5F5")); // Color de fondo suave para la ventana.
 
 		// Inicialización de las listas.
 		libros = new ArrayList<>();
@@ -58,8 +67,29 @@ public class GestorBiblioteca extends JFrame {
 		JLabel buscarLabel = new JLabel("Buscar:"); // Etiqueta para el campo de búsqueda.
 		buscarField = new JTextField(); // Campo de texto para ingresar el término de búsqueda.
 
+		Font fuenteGrande = new Font("SansSerif", Font.PLAIN, 18); // Cambiar la fuente a SansSerif para un look más
+																	// moderno.
+
+		// Aplica la nueva fuente a tus etiquetas.
+		tituloLabel.setFont(fuenteGrande);
+		autorLabel.setFont(fuenteGrande);
+		isbnLabel.setFont(fuenteGrande);
+		buscarLabel.setFont(fuenteGrande);
+
+		// Estilo para los campos de texto.
+		Color colorBorde = Color.decode("#1e88e5"); // Color primario para bordes.
+		tituloField.setBorder(BorderFactory.createLineBorder(colorBorde));
+		autorField.setBorder(BorderFactory.createLineBorder(colorBorde));
+		isbnField.setBorder(BorderFactory.createLineBorder(colorBorde));
+		buscarField.setBorder(BorderFactory.createLineBorder(colorBorde));
+
+		// Función para estilizar botones.
+
 		// Botón para agregar un libro.
 		JButton agregarButton = new JButton("Agregar libro");
+		agregarButton.setBackground(new Color(59, 89, 182)); // Color de fondo azul.
+		agregarButton.setForeground(Color.WHITE); // Color de texto blanco.
+		agregarButton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente Arial en negrita.
 		agregarButton.addActionListener(e -> {
 			String titulo = tituloField.getText();
 			String autor = autorField.getText();
@@ -80,6 +110,9 @@ public class GestorBiblioteca extends JFrame {
 
 		// Botón para mostrar todos los libros.
 		JButton mostrarButton = new JButton("Mostrar libros");
+		mostrarButton.setBackground(new Color(59, 89, 182)); // Color de fondo azul.
+		mostrarButton.setForeground(Color.WHITE); // Color de texto blanco.
+		mostrarButton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente Arial en negrita.
 		mostrarButton.addActionListener(e -> {
 			StringBuilder sb = new StringBuilder();
 			for (Libro libro : libros) {
@@ -90,6 +123,9 @@ public class GestorBiblioteca extends JFrame {
 
 		// Botón para registrar un préstamo.
 		JButton registrarButton = new JButton("Registrar préstamo");
+		registrarButton.setBackground(new Color(59, 89, 182)); // Color de fondo azul.
+		registrarButton.setForeground(Color.WHITE); // Color de texto blanco.
+		registrarButton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente Arial en negrita.
 		registrarButton.addActionListener(e -> {
 			String titulo = tituloField.getText();
 			// Verificación de que el campo del título no esté vacío antes de proceder.
@@ -117,6 +153,9 @@ public class GestorBiblioteca extends JFrame {
 
 		// Botón para mostrar todos los préstamos.
 		JButton mostrarPrestamosButton = new JButton("Mostrar préstamos");
+		mostrarPrestamosButton.setBackground(new Color(59, 89, 182)); // Color de fondo azul.
+		mostrarPrestamosButton.setForeground(Color.WHITE); // Color de texto blanco.
+		mostrarPrestamosButton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente Arial en negrita.
 		mostrarPrestamosButton.addActionListener(e -> {
 			StringBuilder sb = new StringBuilder();
 			for (Prestamo prestamo : prestamos) {
@@ -127,6 +166,9 @@ public class GestorBiblioteca extends JFrame {
 
 		// Botón para devolver un préstamo.
 		JButton devolverPrestamoButton = new JButton("Devolver préstamo");
+		devolverPrestamoButton.setBackground(new Color(59, 89, 182)); // Color de fondo azul.
+		devolverPrestamoButton.setForeground(Color.WHITE); // Color de texto blanco.
+		devolverPrestamoButton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente Arial en negrita.
 		devolverPrestamoButton.addActionListener(e -> {
 			String titulo = tituloField.getText();
 			Prestamo prestamo = buscarPrestamo(titulo);
@@ -158,6 +200,9 @@ public class GestorBiblioteca extends JFrame {
 
 		// Botón para mostrar el historial de préstamos.
 		JButton mostrarHistorialButton = new JButton("Mostrar historial de préstamos");
+		mostrarHistorialButton.setBackground(new Color(59, 89, 182)); // Color de fondo azul.
+		mostrarHistorialButton.setForeground(Color.WHITE); // Color de texto blanco.
+		mostrarHistorialButton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente Arial en negrita.
 		mostrarHistorialButton.addActionListener(e -> {
 			StringBuilder sb = new StringBuilder();
 			for (Prestamo prestamo : historialPrestamos) {
@@ -168,6 +213,9 @@ public class GestorBiblioteca extends JFrame {
 		});
 		// Botón y acción para buscar libros.
 		JButton buscarButton = new JButton("Buscar libro");
+		buscarButton.setBackground(new Color(59, 89, 182)); // Color de fondo azul.
+		buscarButton.setForeground(Color.WHITE); // Color de texto blanco.
+		buscarButton.setFont(new Font("Arial", Font.BOLD, 14)); // Fuente Arial en negrita.
 		buscarButton.addActionListener(e -> {
 			String textoBusqueda = buscarField.getText().trim(); // Texto ingresado para buscar.
 
@@ -200,24 +248,32 @@ public class GestorBiblioteca extends JFrame {
 				}
 			}
 		});
-		add(tituloLabel); // Añadir etiqueta "Título".
-		add(tituloField); // Añadir campo de texto para el título.
-		add(autorLabel); // Añadir etiqueta "Autor".
-		add(autorField); // Añadir campo de texto para el autor.
-		add(isbnLabel); // Añadir etiqueta "ISBN".
-		add(isbnField); // Añadir campo de texto para el ISBN.
-		add(buscarLabel); // Añadir etiqueta de búsqueda.
-		add(buscarField); // Añadir campo de texto de búsqueda.
-		add(agregarButton); // Añadir botón "Agregar libro".
-		add(buscarButton); // Añadir botón de búsqueda.
+
+		JButton[] botones = { agregarButton, mostrarButton, registrarButton, mostrarPrestamosButton,
+				devolverPrestamoButton, mostrarHistorialButton, buscarButton };
+		for (JButton boton : botones) {
+			boton.setBorderPainted(false);
+			boton.setFocusPainted(false);
+			boton.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Cambiar el cursor al pasar sobre el botón.
+		}
+		add(tituloLabel);
+		add(tituloField);
+		add(autorLabel);
+		add(autorField);
+		add(isbnLabel);
+		add(isbnField);
+		add(buscarLabel);
+		add(buscarField);
+		add(agregarButton);
+		add(buscarButton);
 		add(mostrarButton);
 		add(registrarButton);
 		add(mostrarPrestamosButton);
 		add(devolverPrestamoButton);
 		add(mostrarHistorialButton);
-		add(new JLabel()); // Añadir un espacio vacío para alinear.
-		cargarDatos(); // Cargar datos existentes al iniciar.
+		add(new JLabel()); // Espaciador para alinear correctamente los componentes.
 
+		cargarDatos();
 	}
 
 // Clase interna para representar un libro.
@@ -284,6 +340,13 @@ public class GestorBiblioteca extends JFrame {
 
 	// Método para hacer visible la interfaz gráfica.
 	public void iniciar() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Establecer el aspecto visual del
+																					// sistema para la aplicación.
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		setLocationRelativeTo(null); // Centra la ventana en la pantalla.
 		setVisible(true);
 	}
 
