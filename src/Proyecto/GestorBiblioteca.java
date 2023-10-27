@@ -67,8 +67,7 @@ public class GestorBiblioteca extends JFrame {
 		JLabel buscarLabel = new JLabel("Buscar:"); // Etiqueta para el campo de búsqueda.
 		buscarField = new JTextField(); // Campo de texto para ingresar el término de búsqueda.
 
-		Font fuenteGrande = new Font("SansSerif", Font.PLAIN, 18); // Cambiar la fuente a SansSerif para un look más
-																	// moderno.
+		Font fuenteGrande = new Font("SansSerif", Font.PLAIN, 18); // Cambiar la fuente a SansSerif para un look más moderno.
 
 		// Aplica la nueva fuente a tus etiquetas.
 		tituloLabel.setFont(fuenteGrande);
@@ -82,8 +81,6 @@ public class GestorBiblioteca extends JFrame {
 		autorField.setBorder(BorderFactory.createLineBorder(colorBorde));
 		isbnField.setBorder(BorderFactory.createLineBorder(colorBorde));
 		buscarField.setBorder(BorderFactory.createLineBorder(colorBorde));
-
-		// Función para estilizar botones.
 
 		// Botón para agregar un libro.
 		JButton agregarButton = new JButton("Agregar libro");
